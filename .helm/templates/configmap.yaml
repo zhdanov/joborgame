@@ -17,8 +17,9 @@ data:
     }
 
     http {
-      fastcgi_buffers 16 16k;
-      fastcgi_buffer_size 32k;
+      fastcgi_buffers 10 240k;
+      fastcgi_buffer_size 2048k;
+      fastcgi_busy_buffers_size 2048k;
       proxy_buffer_size 128k;
       proxy_buffers 4 256k;
       proxy_busy_buffers_size 256k;
@@ -43,7 +44,7 @@ data:
       server {
         listen 80;
         server_name {{ .Chart.Name }}-{{ env "environment" }}.loc
-        client_max_body_size 11m;
+        client_max_body_size 200m;
         index index.html index.htm index.php;
         root /var/www/joborgame-backend/public;
 

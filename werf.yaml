@@ -26,9 +26,12 @@ git:
 ansible:
   beforeInstall:
   - name: install packages for php-fpm
-    shell: apk add --no-cache bash vim zip libzip-dev libpng-dev openssh git
+    shell: apk add --no-cache libc-dev autoconf make gcc g++ bash vim zip libzip-dev libpng-dev openssh git php7-dev
   - name:  install php-extentions
-    shell: docker-php-ext-install gd zip pdo_mysql
+    shell: |
+      docker-php-ext-install gd zip bcmath pcntl
+      pecl install mongodb
+      docker-php-ext-enable mongodb
   - name: install php config
     shell: |
       cp /usr/local/etc/php/php.ini-production /usr/local/etc/php/php.ini

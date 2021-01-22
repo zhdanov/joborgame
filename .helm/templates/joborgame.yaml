@@ -53,6 +53,16 @@ spec:
           - name: data-store
             mountPath: /var/www
             subPath: {{ .Chart.Name }}-www
+      - name: mongodb
+        {{ tuple (printf "%s-%s" .Chart.Name "mongodb") . | werf_container_image }}
+        ports:
+        - containerPort: 27017
+          name: mongod
+          protocol: TCP
+        volumeMounts:
+        - name: data-store
+          mountPath: /data/db
+          subPath: {{ .Chart.Name }}-mongodb
       volumes:
       - name: config-volume
         configMap:
