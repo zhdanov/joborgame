@@ -41,3 +41,22 @@ ansible:
 ---
 image: {{ env "appname" }}-mongodb
 from: mongo:4.4.3-bionic
+
+---
+image: {{ env "appname" }}-magic
+from: node:15.6.0-alpine3.10
+git:
+- add: /
+  to: /root/joborgame
+  stageDependencies:
+    install:
+      - "**/*"
+    setup:
+      - "**/*"
+docker:
+  CMD: ["bash", "/root/joborgame/container-magic-post-start.bash"]
+  WORKDIR: /root
+ansible:
+  beforeInstall:
+  - name: install packages for mgic daemon
+    shell: apk add --no-cache bash openssh git

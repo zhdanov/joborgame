@@ -35,7 +35,7 @@ spec:
               command:
                 - "sh"
                 - "-c"
-                - "/root/joborgame/container-post-start.bash"
+                - "/root/joborgame/container-php-fpm-post-start.bash"
         env:
         - name: SSH_AUTH_SOCK
           value: /ssh-agent
@@ -63,6 +63,22 @@ spec:
         - name: data-store
           mountPath: /data/db
           subPath: {{ .Chart.Name }}-mongodb
+      - name: magic
+        {{ tuple (printf "%s-%s" .Chart.Name "magic") . | werf_container_image }}
+        env:
+        - name: SSH_AUTH_SOCK
+          value: /ssh-agent
+        - name: ENVIRONMENT
+          value: {{ env "environment" }}
+        - name: HOME_USER_NAME
+          value: {{ env "HOME_USER_NAME" }}
+        ports:
+        - containerPort: 8005
+          name: http
+          protocol: TCP
+        volumeMounts:
+          - name: ssh-agent-sock
+            mountPath: /ssh-agent
       volumes:
       - name: config-volume
         configMap:
