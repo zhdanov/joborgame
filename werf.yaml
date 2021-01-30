@@ -27,11 +27,15 @@ ansible:
   beforeInstall:
   - name: install packages for php-fpm
     shell: apk add --no-cache libc-dev autoconf make gcc g++ bash vim zip libzip-dev libpng-dev openssh git php7-dev
-  - name:  install php-extentions
+  - name: install php-extentions
     shell: |
       docker-php-ext-install gd zip bcmath pcntl
-      pecl install mongodb
-      docker-php-ext-enable mongodb
+  - name: f***ing pecl must die (operation timed out fixed)
+    shell: |
+      docker-php-source extract
+      git clone --branch 1.5.2 --depth 1 https://github.com/mongodb/mongo-php-driver.git /usr/src/php/ext/mongodb
+      cd /usr/src/php/ext/mongodb && git submodule update --init
+      docker-php-ext-install mongodb
   - name: install php config
     shell: |
       cp /usr/local/etc/php/php.ini-production /usr/local/etc/php/php.ini
