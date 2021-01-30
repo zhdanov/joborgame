@@ -76,6 +76,7 @@ spec:
         - containerPort: 8005
           name: http
           protocol: TCP
+          hostPort: 8005
         volumeMounts:
           - name: ssh-agent-sock
             mountPath: /ssh-agent
