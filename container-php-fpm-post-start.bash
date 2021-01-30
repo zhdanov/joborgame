@@ -27,5 +27,6 @@ then
         git checkout 3.0
         composer install
         make install
+        chmod 777 /var/www/joborgame-backend/public/cdn/img/i/game_news
     popd
 fi
