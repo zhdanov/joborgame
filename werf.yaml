@@ -65,3 +65,12 @@ ansible:
   beforeInstall:
   - name: install packages for mgic daemon
     shell: apk add --no-cache bash openssh git
+
+---
+image: {{ env "appname" }}-wait-http-200
+from: alpine:3.13.0
+ansible:
+  beforeInstall:
+  - name: install packages
+    shell: |
+      apk add --no-cache curl

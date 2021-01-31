@@ -80,6 +80,9 @@ spec:
         volumeMounts:
           - name: ssh-agent-sock
             mountPath: /ssh-agent
+      initContainers:
+{{- $gitlabUrl := "http://gitlab-prod.gitlab-prod/users/sign_in" }}
+{{- include "h-init-container-wait-http-200" (list $ . $gitlabUrl) | indent 6 }}
       volumes:
       - name: config-volume
         configMap:
