@@ -59,6 +59,7 @@ spec:
         - containerPort: 27017
           name: mongod
           protocol: TCP
+          hostPort: 65501
         volumeMounts:
         - name: data-store
           mountPath: /data/db
