@@ -59,7 +59,7 @@ git:
     setup:
       - "**/*"
 docker:
-  CMD: ["bash", "/root/joborgame/container-magic-post-start.bash"]
+  CMD: ["bash", "/root/joborgame/container/container__magic-post-start.bash"]
   WORKDIR: /root
 ansible:
   beforeInstall:

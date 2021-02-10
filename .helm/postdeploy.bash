@@ -1,4 +1,4 @@
 #!/bin/bash
 
-./../hakunamatata/scripts/make-alias-for-container.bash joborgame-prod php-fpm
-./../hakunamatata/scripts/copy-dotfiles-to-container.bash joborgame-prod php-fpm
+./../hakunamatata/container/container__make-alias.bash joborgame-prod php-fpm
+./../hakunamatata/container/container__copy-dotfiles.bash joborgame-prod php-fpm
