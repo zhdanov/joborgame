@@ -64,7 +64,7 @@ docker:
 ansible:
   beforeInstall:
   - name: install packages for mgic daemon
-    shell: apk add --no-cache bash openssh git
+    shell: apk add --no-cache bash openssh git nodejs
 
 ---
 image: {{ env "appname" }}-wait-http-200

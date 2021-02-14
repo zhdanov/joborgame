@@ -35,7 +35,7 @@ spec:
               command:
                 - "sh"
                 - "-c"
-                - "/root/joborgame/container/container__magic-post-start.bash"
+                - "/root/joborgame/container/container__php-fpm-post-start.bash"
         env:
         - name: SSH_AUTH_SOCK
           value: /ssh-agent
