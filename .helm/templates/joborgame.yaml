@@ -28,14 +28,15 @@ spec:
             mountPath: /var/www
             subPath: {{ .Chart.Name }}-www
       - name: php-fpm
-        {{ tuple (printf "%s-%s" .Chart.Name "php-fpm") . | werf_container_image }}
+        {{ tuple (printf "h-php-fpm") . | werf_container_image }}
         lifecycle:
           postStart:
             exec:
               command:
                 - "sh"
                 - "-c"
-                - "/root/joborgame/container/container__php-fpm-post-start.bash"
+                - "git clone --recurse-submodules https://github.com/zhdanov/joborgame /root/joborgame && /root/joborgame/container/container__php-fpm-post-start.bash"
+        workingDir: /var/www/joborgame-backend
         env:
         - name: SSH_AUTH_SOCK
           value: /ssh-agent
