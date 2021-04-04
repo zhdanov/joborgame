@@ -13,12 +13,12 @@ deploy:
 {{ tpl $tpl . }}
 
 ---
-image: {{ env "appname" }}-nginx
-from: nginx:1.19.6-alpine
+{{ $tpl := .Files.Get ".werf/common/nginx.yaml" }}
+{{ tpl $tpl . }}
 
 ---
-image: {{ env "appname" }}-mongodb
-from: mongo:4.4.3-bionic
+{{ $tpl := .Files.Get ".werf/common/mongodb.yaml" }}
+{{ tpl $tpl . }}
 
 ---
 image: {{ env "appname" }}-magic
