@@ -24,7 +24,7 @@ then
 
     curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
     pushd /var/www/joborgame-backend
-        git checkout 3.0
+        git checkout master
         composer install
         make install
         chmod 777 /var/www/joborgame-backend/public/cdn/img/i/game_news
