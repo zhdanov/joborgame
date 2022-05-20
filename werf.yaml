@@ -21,7 +21,7 @@ deploy:
 {{ tpl $tpl . }}
 
 ---
-image: {{ env "appname" }}-magic
+image: {{ env "appname" }}_magic
 from: node:15.6.0-alpine3.10
 git:
 - add: /
